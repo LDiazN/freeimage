@@ -1,66 +1,66 @@
---
---  FreeImage v3.15.4 build script
---
 
--- Set a prefix for the install action below
-local prefix = _OPTIONS["prefix"] or "./dist/freeimage"
 
------------------------------------------------------------------------------------------------------------------------------------------------------
+group "freeimage"
 
-project "freeimagelib"
-    kind "StaticLib"
-    language "C++"
-    staticruntime "on"
-       
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    externalproject "FreeImage" 
+        location "."
+        uuid "B39ED2B3-D53A-4077-B957-930979A3577D"
+        kind "sharedlib"
+        language "C++"
+    externalproject "FreeImageLib" 
+        location "Source/FreeImageLib"
+        uuid "9E219DF2-315D-478E-8A07-8960C377CE1E"
+        kind "sharedlib"
+        language "C++"
+    externalproject "FreeImagePlus" 
+        location "Wrapper/FreeImagePlus"
+        uuid "94F36908-A4E2-4533-939D-64FF6EADA5A1"
+        kind "sharedlib"
+        language "C++"
+    externalproject "LibJPEG" 
+        location "Source/LibJPEG"
+        uuid "5E1D4E5F-E10C-4BA3-B663-F33014FD21D9"
+        kind "sharedlib"
+        language "C++"
+    externalproject "LibPNG" 
+        location "Source/LibPNG"
+        uuid "7DB10B50-CE00-4D7A-B322-6824F05D2FCB"
+        kind "sharedlib"
+        language "C++"
+    externalproject "ZLib" 
+        location "Source/ZLib"
+        uuid "33134F61-C1AD-4B6F-9CEA-503A9F140C52"
+        kind "sharedlib"
+        language "C++"
+    externalproject "OpenEXR" 
+        location "Source/OpenEXR"
+        uuid "17A4874B-0606-4687-90B6-F91F8CB3B8AF"
+        kind "sharedlib"
+        language "C++"
+    externalproject "LibOpenJPEG" 
+        location "Source/LibOpenJPEG"
+        uuid "E3536C28-A7F1-4B53-8E52-7D2232F9E098"
+        kind "sharedlib"
+        language "C++"
+    externalproject "LibRawLite" 
+        location "Source/LibRawLite"
+        uuid "07F662C1-1323-42AB-B6AF-FBFD34A7437A"
+        kind "sharedlib"
+        language "C++"
+    externalproject "LibTIFF4" 
+        location "Source/LibTIFF4"
+        uuid "EC085CBD-E9C3-477F-9A97-CB9D5DA30E27"
+        kind "sharedlib"
+        language "C++"
+    externalproject "LibWebP" 
+        location "Source/LibWebP"
+        uuid "097D9F6C-FD0E-4CBC-9676-009012AAECA8"
+        kind "sharedlib"
+        language "C++"
+    externalproject "LibJXR" 
+        location "Source/LibJXR"
+        uuid "244455E0-5F25-4451-9540-F317883E52A8"
+        kind "sharedlib"
+        language "C++"
 
-    includedirs
-    {
-		"source",
-		"source/zlib",
-		"source/deprecationmanager",
-		"source/openexr/half",
-		"source/openexr/iex",
-		"source/openexr/ilmimf",
-		"source/openexr/imath",
-		"source/openexr/ilmthread",
-    }
-        
-    files 
-    { 
-		"source/*.h",
-		"source/deprecationmanager/*.h",
-		"source/deprecationmanager/*.cpp",
-		"source/freeimage/*.cpp",
-		"source/metadata/*.cpp",
-		"source/freeimagetoolkit/*.h",
-		"source/freeimagetoolkit/*.cpp",	
-    }
-    
-    excludes
-    {
-      
-    }
-    
-    defines 
-    { 
-      "WIN32",
-      "WIN32_LEAN_AND_MEAN",
-      "VC_EXTRALEAN",
-      "_LIB",
-      "OPJ_STATIC",
-	  "LIBRAW_NODLL",
-      "FREEIMAGE_LIB",
-      "_CRT_SECURE_NO_DEPRECATE"
-    }
-    
-    configuration "Debug"
-        defines { "DEBUG" }
-        symbols "on"	  	  
-        targetname "freeimage"
-           
-    configuration "Release"
-        defines { "NDEBUG" }
-        optimize "on"      	  
-        targetname "freeimage"
+group ""
